@@ -89,3 +89,16 @@ class binary_tree:
 				temp_node.set_left(False)	
 				temp_node = temp_node.right_child		
 		return find	
+	def height(self):
+		temp_node = self.root
+		max_height = 0
+		while (temp_node is not None):
+			if ((temp_node.left_child is not None) and (temp_node.get_left() == False)):
+				temp_node.set_left(True)
+				temp_node = temp_node.left_child
+			else:		
+				if (temp_node.depth() > max_height):
+					max_height = temp_node.depth()
+				temp_node.set_left(False)		
+				temp_node = temp_node.right_child		
+		return max_height	
