@@ -75,3 +75,17 @@ class binary_tree:
 				print(temp_node.getvalue())
 				temp_node.set_left(False)
 				temp_node = temp_node.right_child		
+
+	def search(self, value):
+		temp_node = self.root
+		find = None
+		while (temp_node is not None):
+			if ((temp_node.left_child is not None) and (temp_node.get_left() == False)):
+				temp_node.set_left(True)
+				temp_node = temp_node.left_child
+			else:	
+				if (temp_node.getvalue() == value):
+					find = temp_node
+				temp_node.set_left(False)	
+				temp_node = temp_node.right_child		
+		return find	
