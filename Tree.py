@@ -46,3 +46,32 @@ class binary_tree:
 			self.root = None
 			gc.collect()	
 			return None
+	if ((node.left_child is None) and ((node.right_child == None) or (node.right_child == node.father) 
+			or (node.right_child.father != node))):
+			if (node == node.father.left_child):
+				node.father.left_child = None		
+			else:
+				node.father.right_child = node.right_child
+			return None	
+		if (node == node.father.left_child):
+				node.father.left_child = None
+		else:
+			temp_node = node
+			while (temp_node.right_child is not None):
+				if (temp_node.right_child.father is not temp_node):
+					temp_node = temp_node.right_child
+					break
+				temp_node = temp_node.right_child			
+			node.father.right_child = None if temp_node.right_child == None else temp_node	
+		gc.collect()
+		
+	def print(self):
+		temp_node = self.root
+		while (temp_node is not None):
+			if ((temp_node.left_child is not None) and (temp_node.get_left() == False)):
+				temp_node.set_left(True)
+				temp_node = temp_node.left_child
+			else:
+				print(temp_node.getvalue())
+				temp_node.set_left(False)
+				temp_node = temp_node.right_child		
